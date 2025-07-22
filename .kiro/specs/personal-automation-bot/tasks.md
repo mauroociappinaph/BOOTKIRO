@@ -46,7 +46,7 @@
     - Crear sistema de paginación para resultados
     - _Requirements: 1.2_
 
-  - [ ] 3.3 Implementar funcionalidad de envío de correos
+  - [x] 3.3 Implementar funcionalidad de envío de correos
     - Desarrollar flujo conversacional para recopilar datos del correo
     - Implementar validación de direcciones de correo
     - Crear función para enviar correos a través de Gmail API

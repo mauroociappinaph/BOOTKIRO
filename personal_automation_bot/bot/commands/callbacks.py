@@ -14,8 +14,12 @@ from personal_automation_bot.bot.keyboards.main_menu import (
 from personal_automation_bot.bot.conversations.base import conversation_data, ConversationState
 from personal_automation_bot.bot.commands.auth import handle_auth_callback
 from personal_automation_bot.bot.commands.email import get_email_callback_handler
+from personal_automation_bot.services.email import EmailService
 
 logger = logging.getLogger(__name__)
+
+# Initialize email service
+email_service = EmailService()
 
 async def handle_callback_query(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """
@@ -86,6 +90,13 @@ async def handle_callback_query(update: Update, context: ContextTypes.DEFAULT_TY
     # Authentication callbacks
     elif query.data.startswith("auth_"):
         await handle_auth_callback(update, context, query.data)
+
+    # Email confirmation callbacks
+    elif query.data == "email_confirm_send":
+        await handle_email_confirm_send(query, user_id)
+
+    elif query.data == "email_cancel_send":
+        await handle_email_cancel_send(query, user_id)
 
     # Email callbacks - handle all email-related callbacks
     elif query.data.startswith("email_"):
@@ -248,3 +259,71 @@ async def start_image_generation_conversation(query, user_id):
         reply_markup=get_back_keyboard(),
         parse_mode='Markdown'
     )
+
+async def handle_email_confirm_send(query, user_id):
+    """Handle email send confirmation."""
+    # Get email data from conversation
+    email_to = conversation_data.get_user_field(user_id, "email_to")
+    email_subject = conversation_data.get_user_field(user_id, "email_subject")
+    email_body = conversation_data.get_user_field(user_id, "email_body")
+
+    if not all([email_to, email_subject, email_body]):
+        await query.edit_message_text(
+            "❌ **Error**\n\nFaltan datos del correo. Por favor, inicia el proceso nuevamente.",
+            reply_markup=get_main_menu_keyboard(),
+            parse_mode='Markdown'
+        )
+        conversation_data.clear_user_data(user_id)
+        return
+
+    # Show sending message
+    await query.edit_message_text(
+        "📤 **Enviando correo...**\n\nPor favor, espera un momento.",
+        parse_mode='Markdown'
+    )
+
+    try:
+        # Send the email
+        success, message = email_service.send_email(str(user_id), email_to, email_subject, email_body)
+
+        if success:
+            result_text = (
+                "✅ **¡Correo enviado exitosamente!**\n\n"
+                f"**Para:** {email_to}\n"
+                f"**Asunto:** {email_subject}\n\n"
+                f"{message}"
+            )
+        else:
+            result_text = (
+                "❌ **Error al enviar correo**\n\n"
+                f"{message}\n\n"
+                "Por favor, verifica tu autenticación y conexión a internet."
+            )
+
+        await query.edit_message_text(
+            result_text,
+            reply_markup=get_main_menu_keyboard(),
+            parse_mode='Markdown'
+        )
+
+    except Exception as e:
+        logger.error(f"Error sending email for user {user_id}: {e}")
+        await query.edit_message_text(
+            f"❌ **Error técnico**\n\nOcurrió un error al enviar el correo: {str(e)}",
+            reply_markup=get_main_menu_keyboard(),
+            parse_mode='Markdown'
+        )
+
+    # Clear conversation data
+    conversation_data.clear_user_data(user_id)
+
+async def handle_email_cancel_send(query, user_id):
+    """Handle email send cancellation."""
+    await query.edit_message_text(
+        "❌ **Envío cancelado**\n\nEl correo no fue enviado.",
+        reply_markup=get_main_menu_keyboard(),
+        parse_mode='Markdown'
+    )
+
+    # Clear conversation data
+    conversation_data.clear_user_data(user_id)

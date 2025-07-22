@@ -100,18 +100,67 @@ class GmailClient:
             flow = InstalledAppFlow.from_client_secrets_file(
                 client_secrets_path, self.SCOPES
             )
-            self.credentials = flow.run_local_server(port=8080)
+
+            # Try different ports if 8080 is busy
+            ports_to_try = [8080, 8081, 8082, 8083]
+
+            for port in ports_to_try:
+                try:
+                    print(f"Trying to start OAuth server on port {port}...")
+                    self.credentials = flow.run_local_server(
+                        port=port,
+                        open_browser=True,
+                        success_message='Authentication successful! You can close this window.'
+                    )
+                    break
+                except OSError as port_error:
+                    print(f"Port {port} is busy, trying next port...")
+                    if port == ports_to_try[-1]:  # Last port
+                        raise port_error
+                    continue
+
             self._save_credentials()
             self.service = build('gmail', 'v1', credentials=self.credentials)
+            print("Gmail authentication completed successfully!")
             return True
 
         except Exception as e:
-            print(f"Authentication failed: {e}")
+            error_msg = f"Authentication failed: {str(e)}"
+            print(error_msg)
+
+            # Provide more specific error messages
+            if "Port" in str(e) and "busy" in str(e).lower():
+                print("Suggestion: Close other applications using ports 8080-8083")
+            elif "redirect_uri_mismatch" in str(e).lower():
+                print("Suggestion: Add http://localhost:8080/ to authorized redirect URIs in Google Cloud Console")
+            elif "access_denied" in str(e).lower():
+                print("Suggestion: Make sure to grant all requested permissions during OAuth flow")
+
             return False
 
     def is_authenticated(self) -> bool:
         """Check if the client is authenticated and ready to use."""
-        return self.service is not None
+        # If service is already built, we're authenticated
+        if self.service is not None:
+            return True
+
+        # Try to load existing credentials and build service
+        try:
+            if self.credentials and self.credentials.valid:
+                self.service = build('gmail', 'v1', credentials=self.credentials)
+                return True
+
+            # Try to refresh expired credentials
+            if self.credentials and self.credentials.expired and self.credentials.refresh_token:
+                self.credentials.refresh(Request())
+                self._save_credentials()
+                self.service = build('gmail', 'v1', credentials=self.credentials)
+                return True
+
+        except Exception as e:
+            print(f"Error checking authentication: {e}")
+
+        return False
 
     def get_recent_emails(self, max_results: int = 10, query: str = '') -> List[Dict[str, Any]]:
         """
