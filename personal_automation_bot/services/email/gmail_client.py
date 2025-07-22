@@ -100,7 +100,7 @@ class GmailClient:
             flow = InstalledAppFlow.from_client_secrets_file(
                 client_secrets_path, self.SCOPES
             )
-            self.credentials = flow.run_local_server(port=0)
+            self.credentials = flow.run_local_server(port=8080)
             self._save_credentials()
             self.service = build('gmail', 'v1', credentials=self.credentials)
             return True
