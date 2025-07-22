@@ -23,12 +23,22 @@ Para usar las funcionalidades de Gmail, Calendar y Drive, necesitas configurar O
    - **URIs de origen autorizados**: `http://localhost:8080`
    - **URIs de redirección autorizados**: `http://localhost:8080/`
 
-### 3. Configurar Variables de Entorno
+### 3. Descargar Credenciales
 
-Agrega las credenciales a tu archivo `.env`:
+1. Después de crear las credenciales OAuth, haz clic en el botón de descarga
+2. Descarga el archivo JSON de credenciales
+3. Guarda el archivo como `credentials.json` en la raíz del proyecto
+4. **Importante**: Nunca subas este archivo a control de versiones
+
+### 4. Configurar Variables de Entorno
+
+Agrega la ruta del archivo de credenciales a tu archivo `.env`:
 
 ```bash
 # Google OAuth Credentials
+GOOGLE_CLIENT_SECRETS_PATH=credentials.json
+
+# Opcional: Para configuración avanzada
 GOOGLE_CLIENT_ID=tu_client_id_aqui
 GOOGLE_CLIENT_SECRET=tu_client_secret_aqui
 GOOGLE_REDIRECT_URI=http://localhost:8080/
