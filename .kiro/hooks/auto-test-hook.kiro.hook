@@ -1,0 +1,17 @@
+{
+  "enabled": true,
+  "name": "Automatic Test Runner",
+  "description": "Automatically runs relevant tests when Python files are created or modified",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "*.py",
+      "personal_automation_bot/**/*.py"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "I've detected changes to Python files in the project. Please:\n\n1. Identify which module or component has been modified\n2. Run the relevant tests for that component using pytest\n3. If no specific tests exist for the modified file, run the general test suite\n4. Report the test results and suggest any fixes for failing tests\n5. If appropriate, suggest additional tests that could be added to improve coverage\n\nUse the following commands as needed:\n- For specific module tests: `pytest tests/test_specific_module.py -v`\n- For all tests: `pytest`\n- For test coverage: `pytest --cov=personal_automation_bot`\n\nPlease focus on providing actionable feedback based on test results."
+  }
+}

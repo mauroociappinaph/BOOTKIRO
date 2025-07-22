@@ -1,0 +1,18 @@
+{
+  "enabled": true,
+  "name": "Documentation Update Assistant",
+  "description": "Monitors Python source files and configuration files for changes and suggests updates to documentation",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "*.py",
+      "requirements.txt",
+      "personal_automation_bot/**/*.py"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "I noticed changes to source code or configuration files. Please review these changes and suggest appropriate updates to the documentation in README.md or relevant files in a docs folder if it exists. Consider:\n1. Are there new features that should be documented?\n2. Have existing features changed in a way that makes documentation outdated?\n3. Are there changes to dependencies or configuration that users should know about?\n4. Should installation or usage instructions be updated?\n\nPlease provide specific suggestions for documentation updates based on the recent code changes."
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "enabled": true,
+  "name": "New File Test Creator",
+  "description": "Suggests and creates test files for newly created Python modules",
+  "version": "1",
+  "when": {
+    "type": "fileCreated",
+    "patterns": [
+      "*.py",
+      "personal_automation_bot/**/*.py"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "I've detected a new Python file has been created. Please:\n\n1. Analyze the new file to understand its purpose and functionality\n2. Check if a corresponding test file already exists\n3. If no test file exists, create an appropriate test file in the tests directory following the project's testing conventions\n4. Include test cases that cover the main functionality of the new file\n5. Ensure the tests follow pytest conventions and the project's testing patterns\n\nThe test file should:\n- Be named according to the project convention (typically test_[module_name].py)\n- Include appropriate imports\n- Contain test functions that cover the main functionality\n- Use fixtures where appropriate\n- Follow the project's testing style and patterns\n\nAfter creating the test file, run it to verify it works correctly."
+  }
+}

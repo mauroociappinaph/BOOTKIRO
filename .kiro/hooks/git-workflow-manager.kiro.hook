@@ -1,0 +1,18 @@
+{
+  "enabled": true,
+  "name": "Git Workflow Manager",
+  "description": "Manages a Git workflow where dev is the main development branch and main is protected for production. Helps create task branches, track issues, and maintain proper merge procedures.",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      ".git/HEAD",
+      ".git/refs/heads/*",
+      ".github/issues/*.md"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "I notice you're working with Git branches or issues. Let me help you maintain the proper workflow:\n\n1. If you're creating a new branch:\n   - Ensure you're branching from dev with `git checkout -b feature-name dev`\n   - Create a corresponding issue with clear task description and subtasks as checklists\n   \n2. If you're completing work on a branch:\n   - Run all tests to ensure they pass: `pytest`\n   - Commit your changes with a descriptive message\n   - Push your branch: `git push origin feature-name`\n   - Switch to dev: `git checkout dev`\n   - Merge your feature branch: `git merge feature-name`\n   - Optionally delete the branch: `git branch -d feature-name`\n   - Close the corresponding issue with a summary of changes\n\n3. For production deployments:\n   - Only merge to main from dev after thorough testing\n   - Use `git checkout main && git merge dev` for production deployments\n   \nRemember that dev is our main development branch and main is protected for production releases only.\n\nHow can I assist you with your current Git operation?"
+  }
+}
