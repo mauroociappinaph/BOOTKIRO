@@ -16,6 +16,7 @@ from personal_automation_bot.bot.commands.basic import (
     menu_command
 )
 from personal_automation_bot.bot.commands.auth import auth_command
+from personal_automation_bot.bot.commands.email import email_command
 from personal_automation_bot.bot.commands.callbacks import handle_callback_query
 from personal_automation_bot.bot.commands.messages import handle_message
 
@@ -49,6 +50,7 @@ def setup_bot(token=None):
     application.add_handler(CommandHandler("help", help_command))
     application.add_handler(CommandHandler("menu", menu_command))
     application.add_handler(CommandHandler("auth", auth_command))
+    application.add_handler(CommandHandler("email", email_command))
 
     # Register callback query handler for inline keyboards
     application.add_handler(CallbackQueryHandler(handle_callback_query))

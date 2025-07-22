@@ -13,6 +13,7 @@ from personal_automation_bot.bot.keyboards.main_menu import (
 )
 from personal_automation_bot.bot.conversations.base import conversation_data, ConversationState
 from personal_automation_bot.bot.commands.auth import handle_auth_callback
+from personal_automation_bot.bot.commands.email import get_email_callback_handler
 
 logger = logging.getLogger(__name__)
 
@@ -33,7 +34,9 @@ async def handle_callback_query(update: Update, context: ContextTypes.DEFAULT_TY
         conversation_data.clear_user_data(user_id)
 
     elif query.data == "menu_email":
-        await show_email_menu(query)
+        # Use the new email command handler
+        from personal_automation_bot.bot.commands.email import email_command
+        await email_command(update, context)
 
     elif query.data == "menu_calendar":
         await show_calendar_menu(query)
@@ -83,6 +86,14 @@ async def handle_callback_query(update: Update, context: ContextTypes.DEFAULT_TY
     # Authentication callbacks
     elif query.data.startswith("auth_"):
         await handle_auth_callback(update, context, query.data)
+
+    # Email callbacks - handle all email-related callbacks
+    elif query.data.startswith("email_"):
+        email_handler = get_email_callback_handler(query.data)
+        if email_handler:
+            await email_handler(update, context)
+        else:
+            logger.warning(f"Unknown email callback data: {query.data}")
 
     else:
         logger.warning(f"Unknown callback data: {query.data}")

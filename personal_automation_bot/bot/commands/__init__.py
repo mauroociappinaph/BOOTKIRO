@@ -8,10 +8,18 @@ from personal_automation_bot.bot.commands.basic import (
     menu_command
 )
 from personal_automation_bot.bot.commands.callbacks import handle_callback_query
+from personal_automation_bot.bot.commands.email import (
+    email_command,
+    get_email_callback_handler,
+    EMAIL_CALLBACK_HANDLERS
+)
 
 __all__ = [
     'start_command',
     'help_command',
     'menu_command',
-    'handle_callback_query'
+    'handle_callback_query',
+    'email_command',
+    'get_email_callback_handler',
+    'EMAIL_CALLBACK_HANDLERS'
 ]

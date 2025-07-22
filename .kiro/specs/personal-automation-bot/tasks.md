@@ -39,7 +39,7 @@
     - Implementar cliente de API de Gmail
     - _Requirements: 1.2, 1.7_
 
-  - [ ] 3.2 Implementar funcionalidad de lectura de correos
+  - [x] 3.2 Implementar funcionalidad de lectura de correos
 
     - Desarrollar función para listar correos recientes
     - Implementar visualización de correos en formato legible
