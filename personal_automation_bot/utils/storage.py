@@ -170,3 +170,18 @@ class TokenStorage:
             logger.error(f"Failed to list users with tokens: {e}")
 
         return users
+
+
+def get_user_data_path(user_id: str) -> str:
+    """
+    Get the data directory path for a specific user.
+
+    Args:
+        user_id: Unique identifier for the user
+
+    Returns:
+        str: Path to user's data directory
+    """
+    user_data_dir = os.path.join(settings.DATA_DIR, "users", str(user_id))
+    os.makedirs(user_data_dir, exist_ok=True)
+    return user_data_dir
