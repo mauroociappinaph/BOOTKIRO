@@ -32,7 +32,7 @@
 
 - [ ] 3. Implementación del Servicio de Correo
 
-  - [ ] 3.1 Configurar integración con Gmail API
+  - [x] 3.1 Configurar integración con Gmail API
 
     - Registrar aplicación en Google Cloud Console
     - Configurar permisos OAuth para Gmail
