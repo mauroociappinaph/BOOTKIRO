@@ -118,7 +118,7 @@
     - Crear pipeline de vectorización con modelos gratuitos
     - _Requirements: 6.1, 6.2_
 
-  - [ ] 6.3 Implementar generación aumentada
+  - [x] 6.3 Implementar generación aumentada
     - Desarrollar sistema de recuperación de contexto relevante
     - Implementar integración con servicio de contenido
     - Crear sistema de citación de fuentes
