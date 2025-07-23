@@ -102,7 +102,7 @@
     - Crear sistema de sincronización
     - _Requirements: 4.1, 4.2, 4.3_
 
-- [ ] 6. Implementación del Sistema RAG
+- [-] 6. Implementación del Sistema RAG
 
   - [ ] 6.1 Configurar base de datos vectorial local
 
