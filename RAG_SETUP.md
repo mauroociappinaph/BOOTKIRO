@@ -7,7 +7,11 @@ Este documento explica cómo configurar y ejecutar el sistema RAG (Retrieval-Aug
 - Python 3.8 o superior
 - Pip (gestor de paquetes de Python)
 - Token de bot de Telegram (obtenido a través de [@BotFather](https://t.me/botfather))
-- Opcionalmente, una clave API de OpenAI para generación de texto de alta calidad
+- Una clave API de Groq para generación de texto de alta calidad
+- Dependencias de Python (instaladas automáticamente con el script de configuración):
+  - Vector database: faiss-cpu, chromadb, sentence-transformers
+  - Document processing: pypdf, python-docx, beautifulsoup4, pdfminer.six
+  - RAG y LLM: langchain, llama-index, transformers, torch
 
 ## Pasos de configuración
 
@@ -38,6 +42,7 @@ Edita el archivo `.env` y añade tus credenciales:
 nano .env
 
 # Añade tu token de Telegram y otras credenciales
+# Añade GROQ_API_KEY=tu_clave_api_de_groq para la generación de texto
 ```
 
 ### 3. Indexar documentos iniciales
@@ -89,7 +94,7 @@ Una vez que el bot esté en funcionamiento, puedes interactuar con él en Telegr
 
 ### Errores de generación de texto
 
-- Si usas OpenAI, verifica que la clave API sea correcta
+- Verifica que la clave API de Groq sea correcta
 - Si usas modelos locales, asegúrate de tener suficiente memoria RAM
 
 ### Errores de indexación
@@ -103,14 +108,30 @@ Una vez que el bot esté en funcionamiento, puedes interactuar con él en Telegr
 El sistema RAG puede procesar los siguientes formatos de archivo:
 
 - Texto plano (`.txt`, `.md`, `.csv`, `.json`)
-- PDF (`.pdf`)
-- Microsoft Word (`.docx`)
-- HTML (`.html`, `.htm`)
+- PDF (`.pdf`) - requiere la dependencia pypdf
+- Microsoft Word (`.docx`) - requiere la dependencia python-docx
+- HTML (`.html`, `.htm`) - requiere la dependencia beautifulsoup4
 
 ## Configuración avanzada
 
 Para configuración avanzada, puedes editar los siguientes archivos:
 
-- `personal_automation_bot/services/content/text_generator.py` - Para configurar los generadores de texto
-- `personal_automation_bot/services/rag/vector_store.py` - Para configurar el almacenamiento de vectores
+- `personal_automation_bot/services/content/text_generator.py` - Para configurar el generador de texto Groq (OpenAI o Hugging Face)
+- `personal_automation_bot/services/rag/vector_store.py` - Para configurar el almacenamiento de vectores (FAISS o Chroma)
 - `personal_automation_bot/bot/conversations/rag_conversation.py` - Para modificar la conversación RAG
+
+### Opciones de generación de texto
+
+El sistema soporta dos proveedores principales para la generación de texto:
+
+1. **OpenAI** - Requiere una clave API (configurable en `.env`)
+2. **Hugging Face** - Puede funcionar con modelos locales o a través de la API de Hugging Face
+
+### Opciones de base de datos vectorial
+
+El sistema soporta dos opciones para el almacenamiento de vectores:
+
+1. **FAISS** - Base de datos vectorial eficiente en memoria (predeterminada)
+2. **Chroma** - Base de datos vectorial con persistencia y metadatos
+
+Puedes seleccionar el tipo de almacenamiento en el archivo `.env` con la variable `RAG_VECTOR_STORE_TYPE`.

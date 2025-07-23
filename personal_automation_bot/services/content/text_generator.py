@@ -60,45 +60,44 @@ class TextGenerator(ABC):
         pass
 
 
-class OpenAITextGenerator(TextGenerator):
-    """Text generator using OpenAI API."""
+class GroqTextGenerator(TextGenerator):
+    """Text generator using Groq API."""
 
     def __init__(
         self,
         api_key: Optional[str] = None,
-        model: str = "gpt-3.5-turbo",
+        model: str = "llama3-70b-8192",
         organization: Optional[str] = None
     ):
         """
-        Initialize OpenAI text generator.
+        Initialize Groq text generator.
 
         Args:
-            api_key: OpenAI API key (if None, will use OPENAI_API_KEY env var)
+            api_key: Groq API key (if None, will use GROQ_API_KEY env var)
             model: Model to use for generation
-            organization: OpenAI organization ID
+            organization: Groq organization ID
         """
         self.model = model
 
         # Get API key from env var if not provided
-        self.api_key = api_key or os.environ.get("OPENAI_API_KEY")
+        self.api_key = api_key or os.environ.get("GROQ_API_KEY")
         if not self.api_key:
-            logger.warning("No OpenAI API key provided. Text generation will not work.")
+            logger.warning("No Groq API key provided. Text generation will not work.")
 
-        self.organization = organization or os.environ.get("OPENAI_ORGANIZATION")
+        self.organization = organization
 
-        # Initialize OpenAI client if available
+        # Initialize Groq client if available
         try:
-            import openai
-            self.client = openai.OpenAI(
-                api_key=self.api_key,
-                organization=self.organization
+            import groq
+            self.client = groq.Client(
+                api_key=self.api_key
             )
             self.available = True
         except ImportError:
-            logger.warning("OpenAI package not installed. Install with 'pip install openai'")
+            logger.warning("Groq package not installed. Install with 'pip install groq'")
             self.available = False
         except Exception as e:
-            logger.error(f"Error initializing OpenAI client: {e}")
+            logger.error(f"Error initializing Groq client: {e}")
             self.available = False
 
     def generate(
@@ -108,9 +107,9 @@ class OpenAITextGenerator(TextGenerator):
         temperature: float = 0.7,
         **kwargs
     ) -> str:
-        """Generate text using OpenAI API."""
+        """Generate text using Groq API."""
         if not self.available:
-            raise RuntimeError("OpenAI client not available")
+            raise RuntimeError("Groq client not available")
 
         try:
             response = self.client.chat.completions.create(
@@ -123,7 +122,7 @@ class OpenAITextGenerator(TextGenerator):
 
             return response.choices[0].message.content
         except Exception as e:
-            logger.error(f"Error generating text with OpenAI: {e}")
+            logger.error(f"Error generating text with Groq: {e}")
             raise
 
     def generate_with_context(
@@ -134,12 +133,12 @@ class OpenAITextGenerator(TextGenerator):
         temperature: float = 0.7,
         **kwargs
     ) -> str:
-        """Generate text with context using OpenAI API."""
+        """Generate text with context using Groq API."""
         if not self.available:
-            raise RuntimeError("OpenAI client not available")
+            raise RuntimeError("Groq client not available")
 
         # Combine prompt and context
-        system_message = f"Use the following information to answer the user's question. If the information doesn't contain the answer, say you don't know.\n\nContext information:\n{context}"
+        system_message = f"Use the following information to answer the user's question. If the information doesn't contain the answer, say you don't know.\\n\\nContext information:\\n{context}"
 
         try:
             response = self.client.chat.completions.create(
@@ -155,7 +154,7 @@ class OpenAITextGenerator(TextGenerator):
 
             return response.choices[0].message.content
         except Exception as e:
-            logger.error(f"Error generating text with OpenAI: {e}")
+            logger.error(f"Error generating text with Groq: {e}")
             raise
 
 
@@ -318,13 +317,13 @@ class HuggingFaceTextGenerator(TextGenerator):
     ) -> str:
         """Generate text with context using Hugging Face."""
         # Combine prompt and context
-        combined_prompt = f"Context: {context}\n\nQuestion: {prompt}\n\nAnswer:"
+        combined_prompt = f"Context: {context}\\n\\nQuestion: {prompt}\\n\\nAnswer:"
 
         return self.generate(combined_prompt, max_tokens, temperature, **kwargs)
 
 
 def get_text_generator(
-    provider: str = "openai",
+    provider: str = "groq",
     api_key: Optional[str] = None,
     model: Optional[str] = None,
     **kwargs
@@ -333,7 +332,7 @@ def get_text_generator(
     Get a text generator based on the provider.
 
     Args:
-        provider: Provider to use ('openai' or 'huggingface')
+        provider: Provider to use ('groq' or 'huggingface')
         api_key: API key for the provider
         model: Model to use
         **kwargs: Additional arguments for the specific generator
@@ -341,9 +340,9 @@ def get_text_generator(
     Returns:
         TextGenerator instance
     """
-    if provider.lower() == "openai":
-        default_model = "gpt-3.5-turbo"
-        return OpenAITextGenerator(api_key=api_key, model=model or default_model, **kwargs)
+    if provider.lower() == "groq":
+        default_model = "llama3-70b-8192"
+        return GroqTextGenerator(api_key=api_key, model=model or default_model, **kwargs)
     elif provider.lower() in ["huggingface", "hf"]:
         default_model = "google/flan-t5-base"
         return HuggingFaceTextGenerator(api_key=api_key, model=model or default_model, **kwargs)
