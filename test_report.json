@@ -1,0 +1,37 @@
+{
+  "telegram_bot": {
+    "status": "PASS",
+    "details": "Bot initialized successfully",
+    "timestamp": "2025-07-23T12:54:49.914083"
+  },
+  "email_management": {
+    "status": "FAIL",
+    "error": "Email service initialization failed",
+    "timestamp": "2025-07-23T12:54:50.783272"
+  },
+  "calendar_management": {
+    "status": "FAIL",
+    "error": "Calendar service initialization failed",
+    "timestamp": "2025-07-23T12:54:50.783642"
+  },
+  "content_generation": {
+    "status": "PASS",
+    "details": "Successfully generated text: Here is a short motivational message about productivity:\n\n**\"Today is a new canvas, waiting for your...",
+    "timestamp": "2025-07-23T12:54:53.707310"
+  },
+  "document_storage": {
+    "status": "FAIL",
+    "error": "Document save returned no ID",
+    "timestamp": "2025-07-23T12:54:53.709235"
+  },
+  "rag_system": {
+    "status": "PASS",
+    "details": "RAG generation successful: The Personal Automation Bot integrates with Gmail for email management and Google Calendar for sched...",
+    "timestamp": "2025-07-23T12:54:56.148340"
+  },
+  "workflow_automation": {
+    "status": "PASS",
+    "details": "Flow created and executed successfully: 9b7bb877-88f5-4d75-aae0-2c89dce115c8",
+    "timestamp": "2025-07-23T12:54:56.149038"
+  }
+}

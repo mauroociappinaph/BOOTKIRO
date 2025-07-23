@@ -2,6 +2,7 @@
 Core functionality for the Telegram bot.
 """
 import logging
+import asyncio
 from telegram.ext import (
     Application,
     CommandHandler,
@@ -20,9 +21,49 @@ from personal_automation_bot.bot.commands.email import email_command
 from personal_automation_bot.bot.commands.callbacks import handle_callback_query
 from personal_automation_bot.bot.commands.messages import handle_message
 from personal_automation_bot.bot.conversations.calendar_conversation import get_calendar_conversation_handler
-from personal_automation_bot.bot.commands.rag import rag_command, rag_help, get_rag_conversation_handler
+# from personal_automation_bot.bot.commands.rag import rag_command, rag_help, get_rag_conversation_handler
 
 logger = logging.getLogger(__name__)
+
+class PersonalAutomationBot:
+    """Main bot class for Personal Automation Bot"""
+
+    def __init__(self, token=None):
+        """Initialize the bot with optional token"""
+        self.token = token or settings.TELEGRAM_BOT_TOKEN
+        if not self.token:
+            raise ValueError("Telegram bot token not provided")
+
+        self.application = None
+        self.setup_bot()
+
+    def setup_bot(self):
+        """Setup the bot application"""
+        self.application = setup_bot(self.token)
+
+    async def start_bot_async(self):
+        """Start the bot asynchronously for testing"""
+        if self.application:
+            # Initialize the bot
+            await self.application.initialize()
+            await self.application.start()
+            logger.info("Bot started successfully for testing")
+            return True
+        return False
+
+    async def stop_bot_async(self):
+        """Stop the bot asynchronously"""
+        if self.application:
+            await self.application.stop()
+            await self.application.shutdown()
+            logger.info("Bot stopped successfully")
+
+    def run_polling(self):
+        """Run the bot with polling (blocking)"""
+        if self.application:
+            self.application.run_polling()
+        else:
+            raise RuntimeError("Bot not initialized")
 
 def setup_bot(token=None):
     """
@@ -53,11 +94,11 @@ def setup_bot(token=None):
     application.add_handler(CommandHandler("menu", menu_command))
     application.add_handler(CommandHandler("auth", auth_command))
     application.add_handler(CommandHandler("email", email_command))
-    application.add_handler(CommandHandler("raghelp", rag_help))
+    # application.add_handler(CommandHandler("raghelp", rag_help))
 
     # Register conversation handlers
     application.add_handler(get_calendar_conversation_handler())
-    application.add_handler(get_rag_conversation_handler())
+    # application.add_handler(get_rag_conversation_handler())
 
     # Register callback query handler for inline keyboards
     application.add_handler(CallbackQueryHandler(handle_callback_query))

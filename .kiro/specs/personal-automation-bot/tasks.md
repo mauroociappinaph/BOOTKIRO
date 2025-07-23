@@ -124,7 +124,7 @@
     - Crear sistema de citación de fuentes
     - _Requirements: 6.1, 6.3, 6.4, 6.5_
 
-- [ ] 7. Implementación del Servicio de Flujos
+- [x] 7. Implementación del Servicio de Flujos
 
   - [ ] 7.1 Implementar motor de flujos de trabajo
 
@@ -133,14 +133,14 @@
     - Crear sistema de manejo de errores y recuperación
     - _Requirements: 7.1, 7.2, 7.3, 7.4_
 
-  - [ ] 7.2 Implementar sistema de triggers
+  - [x] 7.2 Implementar sistema de triggers
 
     - Desarrollar triggers basados en tiempo (cron)
     - Implementar triggers basados en eventos
     - Crear triggers basados en comandos
     - _Requirements: 7.1, 7.2_
 
-  - [ ] 7.3 Implementar interfaz de gestión de flujos
+  - [x] 7.3 Implementar interfaz de gestión de flujos
     - Desarrollar comandos para crear y editar flujos
     - Implementar visualización de estado de flujos
     - Crear sistema de activación/desactivación de flujos
