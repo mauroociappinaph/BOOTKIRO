@@ -19,6 +19,7 @@ from personal_automation_bot.bot.commands.auth import auth_command
 from personal_automation_bot.bot.commands.email import email_command
 from personal_automation_bot.bot.commands.callbacks import handle_callback_query
 from personal_automation_bot.bot.commands.messages import handle_message
+from personal_automation_bot.bot.conversations.calendar_conversation import get_calendar_conversation_handler
 
 logger = logging.getLogger(__name__)
 
@@ -51,6 +52,9 @@ def setup_bot(token=None):
     application.add_handler(CommandHandler("menu", menu_command))
     application.add_handler(CommandHandler("auth", auth_command))
     application.add_handler(CommandHandler("email", email_command))
+
+    # Register conversation handlers
+    application.add_handler(get_calendar_conversation_handler())
 
     # Register callback query handler for inline keyboards
     application.add_handler(CallbackQueryHandler(handle_callback_query))

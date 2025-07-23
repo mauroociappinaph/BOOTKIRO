@@ -43,7 +43,9 @@ async def handle_callback_query(update: Update, context: ContextTypes.DEFAULT_TY
         await email_command(update, context)
 
     elif query.data == "menu_calendar":
-        await show_calendar_menu(query)
+        # Use the calendar command handler
+        from personal_automation_bot.bot.commands.calendar import calendar_commands
+        await calendar_commands.calendar_command(update, context)
 
     elif query.data == "menu_content":
         await show_content_menu(query)
@@ -70,15 +72,11 @@ async def handle_callback_query(update: Update, context: ContextTypes.DEFAULT_TY
     elif query.data == "email_send":
         await start_email_conversation(query, user_id)
 
-    # Calendar callbacks
-    elif query.data == "calendar_view":
-        await show_coming_soon(query, "📅 Ver eventos")
-
-    elif query.data == "calendar_create":
-        await start_calendar_conversation(query, user_id)
-
-    elif query.data == "calendar_delete":
-        await show_coming_soon(query, "🗑️ Eliminar evento")
+    # Calendar callbacks - these are now handled by the calendar conversation handler
+    elif query.data.startswith("cal_"):
+        # These callbacks are handled by the calendar conversation handler
+        # No need to handle them here as they're part of the conversation flow
+        logger.info(f"Calendar callback {query.data} handled by conversation handler")
 
     # Content callbacks
     elif query.data == "content_text":
