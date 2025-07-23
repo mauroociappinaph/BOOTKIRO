@@ -1,30 +1,37 @@
+# Bot and API dependencies
 python-telegram-bot>=13.0
+requests>=2.25.0
+python-dotenv>=0.20.0
+cryptography>=3.4.0
+
+# Google API dependencies
 google-api-python-client>=2.0.0
 google-auth-httplib2>=0.1.0
 google-auth-oauthlib>=0.5.0
-openai>=0.27.0
-langchain>=0.0.200
-llama-index>=0.6.0
+
+# Vector database dependencies
+numpy>=1.20.0
 faiss-cpu>=1.7.0
 chromadb>=0.3.0
-notion-client>=1.0.0
-pytest>=7.0.0
-python-dotenv>=0.20.0
-cryptography>=3.4.0
 sentence-transformers>=2.2.0
+
 # Document processing dependencies
 pypdf>=3.0.0
 python-docx>=0.8.11
 beautifulsoup4>=4.10.0
 pdfminer.six>=20200517
-# Additional dependencies
-numpy>=1.20.0
-# Content generation dependencies
-openai>=1.0.0
-transformers>=4.20.0
-torch>=1.12.0
-requests>=2.25.0
+
 # Content generation dependencies
 openai>=1.0.0
 transformers>=4.30.0
 torch>=2.0.0
+
+# RAG and LLM dependencies
+langchain>=0.0.200
+llama-index>=0.6.0
+
+# External services
+notion-client>=1.0.0
+
+# Testing
+pytest>=7.0.0

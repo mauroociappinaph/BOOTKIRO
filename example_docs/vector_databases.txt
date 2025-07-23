@@ -1,0 +1,61 @@
+# Bases de Datos Vectoriales
+
+## Introducción
+
+Las bases de datos vectoriales son sistemas especializados diseñados para almacenar y consultar eficientemente vectores de alta dimensionalidad. Estos vectores suelen representar características o embeddings de datos como texto, imágenes o audio, convertidos a representaciones numéricas mediante técnicas de aprendizaje automático.
+
+## Características principales
+
+- **Búsqueda por similitud**: Permiten encontrar vectores similares a una consulta dada.
+- **Escalabilidad**: Diseñadas para manejar millones o incluso miles de millones de vectores.
+- **Eficiencia**: Utilizan algoritmos especializados para búsquedas rápidas en espacios de alta dimensionalidad.
+- **Índices optimizados**: Implementan estructuras como árboles KD, HNSW o IVF para acelerar las consultas.
+
+## Tipos de bases de datos vectoriales
+
+### FAISS (Facebook AI Similarity Search)
+
+FAISS es una biblioteca desarrollada por Facebook AI Research que proporciona algoritmos eficientes para la búsqueda de similitud y agrupación de vectores densos. Características:
+
+- Optimizada para CPU y GPU
+- Soporte para múltiples métricas de distancia (euclidiana, coseno, etc.)
+- Implementación de varios algoritmos de aproximación para búsquedas más rápidas
+- Código abierto y altamente personalizable
+
+### Chroma
+
+Chroma es una base de datos vectorial de código abierto diseñada específicamente para aplicaciones de IA. Características:
+
+- API sencilla y fácil de usar
+- Almacenamiento persistente
+- Soporte para metadatos y filtrado
+- Integración con frameworks populares de ML
+
+### Pinecone
+
+Pinecone es un servicio de base de datos vectorial gestionado en la nube. Características:
+
+- Escalabilidad automática
+- Alta disponibilidad
+- Baja latencia
+- Integración con servicios en la nube
+
+## Aplicaciones en RAG
+
+En sistemas RAG (Retrieval-Augmented Generation), las bases de datos vectoriales son fundamentales para:
+
+1. **Almacenamiento eficiente**: Guardar embeddings de documentos o fragmentos de texto.
+2. **Recuperación semántica**: Encontrar rápidamente contenido relevante basado en la similitud semántica.
+3. **Actualización incremental**: Añadir nuevos documentos sin necesidad de reentrenar modelos.
+4. **Filtrado por metadatos**: Combinar búsqueda semántica con filtros tradicionales.
+
+## Consideraciones de implementación
+
+- **Dimensionalidad**: La elección del tamaño del vector afecta tanto la precisión como el rendimiento.
+- **Algoritmos de aproximación**: Permiten equilibrar velocidad y precisión.
+- **Particionamiento**: Estrategias para distribuir los datos en múltiples nodos.
+- **Persistencia**: Mecanismos para guardar y cargar índices desde el disco.
+
+## Conclusión
+
+Las bases de datos vectoriales son un componente esencial en aplicaciones modernas de IA, especialmente en sistemas RAG, donde la recuperación eficiente de información relevante es crucial para generar respuestas precisas y contextualizadas.

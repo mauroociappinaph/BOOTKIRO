@@ -1,0 +1,45 @@
+# Introducción a RAG (Retrieval-Augmented Generation)
+
+## ¿Qué es RAG?
+
+RAG (Retrieval-Augmented Generation) es una técnica que combina la recuperación de información con la generación de texto mediante modelos de lenguaje. Este enfoque permite mejorar la precisión y relevancia de las respuestas generadas, al proporcionar contexto específico extraído de documentos o bases de conocimiento.
+
+## Componentes principales
+
+Un sistema RAG típico consta de tres componentes principales:
+
+1. **Sistema de recuperación**: Busca y recupera documentos o fragmentos relevantes para una consulta dada.
+2. **Sistema de generación**: Utiliza modelos de lenguaje para generar respuestas basadas en la consulta y el contexto recuperado.
+3. **Sistema de integración**: Combina la información recuperada con la capacidad generativa del modelo.
+
+## Ventajas de RAG
+
+- **Precisión mejorada**: Las respuestas se basan en información específica y verificable.
+- **Transparencia**: Las fuentes de información pueden ser citadas y rastreadas.
+- **Actualización sencilla**: Solo es necesario actualizar la base de conocimiento, no reentrenar el modelo.
+- **Reducción de alucinaciones**: Disminuye la tendencia de los modelos a generar información incorrecta.
+
+## Aplicaciones
+
+RAG es especialmente útil en escenarios como:
+
+- Asistentes virtuales con acceso a documentación específica
+- Sistemas de preguntas y respuestas sobre bases de conocimiento corporativas
+- Herramientas de investigación que requieren citas precisas
+- Chatbots que necesitan acceso a información actualizada
+
+## Implementación básica
+
+Una implementación básica de RAG incluye:
+
+1. Indexación de documentos en una base de datos vectorial
+2. Búsqueda semántica para recuperar fragmentos relevantes
+3. Generación de respuestas utilizando el contexto recuperado
+4. Citación de las fuentes utilizadas
+
+## Desafíos
+
+- Selección del contexto más relevante
+- Manejo de información contradictoria
+- Balance entre la información recuperada y el conocimiento del modelo
+- Evaluación de la calidad de las respuestas
