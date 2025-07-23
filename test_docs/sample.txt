@@ -1,0 +1,12 @@
+Este es un documento de prueba para el sistema de indexación.
+
+El sistema RAG (Retrieval-Augmented Generation) permite mejorar las respuestas de modelos de lenguaje
+utilizando información contextual relevante extraída de documentos.
+
+Características principales:
+- Indexación de documentos en diferentes formatos
+- Búsqueda semántica basada en vectores
+- Generación de respuestas con contexto
+
+Este documento debería ser indexado correctamente por el sistema y recuperado cuando se realicen
+consultas relacionadas con RAG, indexación o búsqueda semántica.
