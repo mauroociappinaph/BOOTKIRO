@@ -52,154 +52,110 @@
     - Crear función para enviar correos a través de Gmail API
     - _Requirements: 1.3_
 
-- [ ] 4. Implementación del Servicio de Calendario
+- [x] 4. Implementación del Servicio de Calendario
 
-  - [ ] 4.1 Configurar integración con Google Calendar API
+  - [x] 4.1 Configurar integración con Google Calendar API
 
     - Configurar permisos OAuth para Calendar
     - Implementar cliente de API de Calendar
     - _Requirements: 1.4, 1.7_
 
-  - [ ] 4.2 Implementar funcionalidad de visualización de eventos
+  - [x] 4.2 Implementar funcionalidad de visualización de eventos
 
     - Desarrollar función para listar eventos próximos
     - Implementar visualización de detalles de eventos
     - Crear sistema de filtrado por fecha
     - _Requirements: 1.4_
 
-  - [ ] 4.3 Implementar funcionalidad de creación de eventos
+  - [x] 4.3 Implementar funcionalidad de creación de eventos
 
     - Desarrollar flujo conversacional para recopilar datos del evento
     - Implementar validación de fechas y horas
     - Crear función para añadir eventos al calendario
     - _Requirements: 1.5_
 
-  - [ ] 4.4 Implementar funcionalidad de eliminación de eventos
+  - [x] 4.4 Implementar funcionalidad de eliminación de eventos
     - Desarrollar sistema de selección de eventos
     - Implementar confirmación de eliminación
     - Crear función para eliminar eventos del calendario
     - _Requirements: 1.6_
 
-- [ ] 5. Implementación del Servicio de Contenido
+- [x] 5. Implementación del Servicio de Documentos
 
-  - [ ] 5.1 Configurar integración con APIs de IA gratuitas
-
-    - Implementar cliente para OpenAI API (versión gratuita)
-    - Configurar alternativas de código abierto como respaldo
-    - Desarrollar sistema de rotación de APIs
-    - _Requirements: 2.1, 3.1, 3.2_
-
-  - [ ] 5.2 Implementar generación de texto
-
-    - Desarrollar función para generar texto con prompts
-    - Implementar sistema de parámetros (estilo, longitud)
-    - Crear sistema de refinamiento iterativo
-    - _Requirements: 3.1, 3.3, 3.4_
-
-  - [ ] 5.3 Implementar generación de imágenes
-    - Desarrollar función para generar imágenes con prompts
-    - Implementar sistema de parámetros (estilo, tamaño)
-    - Crear sistema de almacenamiento temporal de imágenes
-    - _Requirements: 3.2, 3.3, 3.4_
-
-- [ ] 6. Implementación del Servicio de Documentos
-
-  - [ ] 6.1 Configurar integración con Google Drive
+  - [x] 5.1 Configurar integración con Google Drive
 
     - Configurar permisos OAuth para Drive
     - Implementar cliente de API de Drive
     - Desarrollar funciones CRUD básicas
     - _Requirements: 4.1, 4.2, 4.3, 4.4_
 
-  - [ ] 6.2 Configurar integración con Notion
+  - [x] 5.2 Configurar integración con Notion
 
     - Implementar autenticación con Notion API
     - Desarrollar cliente para Notion API
     - Implementar funciones CRUD básicas
     - _Requirements: 4.1, 4.2, 4.3, 4.4_
 
-  - [ ] 6.3 Implementar sistema de almacenamiento unificado
+  - [x] 5.3 Implementar sistema de almacenamiento unificado
     - Desarrollar capa de abstracción para múltiples backends
     - Implementar sistema de caché local
     - Crear sistema de sincronización
     - _Requirements: 4.1, 4.2, 4.3_
 
-- [ ] 7. Implementación del Servicio de Redes Sociales
+- [ ] 6. Implementación del Sistema RAG
 
-  - [ ] 7.1 Configurar integración con Buffer Free
-
-    - Implementar autenticación con Buffer API
-    - Desarrollar cliente para Buffer API
-    - Crear funciones para publicación y programación
-    - _Requirements: 5.1, 5.2, 5.3, 5.4_
-
-  - [ ] 7.2 Configurar integración con Metricool Free
-
-    - Implementar autenticación con Metricool API
-    - Desarrollar cliente para Metricool API
-    - Crear funciones para publicación y programación
-    - _Requirements: 5.1, 5.2, 5.3, 5.4_
-
-  - [ ] 7.3 Implementar sistema de publicación directa
-    - Desarrollar publicadores directos para plataformas principales
-    - Implementar sistema de programación local
-    - Crear sistema de notificaciones de estado
-    - _Requirements: 5.1, 5.2, 5.3, 5.4_
-
-- [ ] 8. Implementación del Sistema RAG
-
-  - [ ] 8.1 Configurar base de datos vectorial local
+  - [ ] 6.1 Configurar base de datos vectorial local
 
     - Implementar FAISS o Chroma para almacenamiento de vectores
     - Desarrollar sistema de persistencia de índices
     - Crear funciones de búsqueda semántica
     - _Requirements: 6.1, 6.2, 6.3_
 
-  - [ ] 8.2 Implementar indexación de documentos
+  - [ ] 6.2 Implementar indexación de documentos
 
     - Desarrollar procesadores para diferentes formatos (PDF, DOCX, etc.)
     - Implementar sistema de extracción de texto
     - Crear pipeline de vectorización con modelos gratuitos
     - _Requirements: 6.1, 6.2_
 
-  - [ ] 8.3 Implementar generación aumentada
+  - [ ] 6.3 Implementar generación aumentada
     - Desarrollar sistema de recuperación de contexto relevante
     - Implementar integración con servicio de contenido
     - Crear sistema de citación de fuentes
     - _Requirements: 6.1, 6.3, 6.4, 6.5_
 
-- [ ] 9. Implementación del Servicio de Flujos
+- [ ] 7. Implementación del Servicio de Flujos
 
-  - [ ] 9.1 Implementar motor de flujos de trabajo
+  - [ ] 7.1 Implementar motor de flujos de trabajo
 
     - Desarrollar sistema de definición de flujos en JSON
     - Implementar ejecutor de acciones secuenciales
     - Crear sistema de manejo de errores y recuperación
     - _Requirements: 7.1, 7.2, 7.3, 7.4_
 
-  - [ ] 9.2 Implementar sistema de triggers
+  - [ ] 7.2 Implementar sistema de triggers
 
     - Desarrollar triggers basados en tiempo (cron)
     - Implementar triggers basados en eventos
     - Crear triggers basados en comandos
     - _Requirements: 7.1, 7.2_
 
-  - [ ] 9.3 Implementar interfaz de gestión de flujos
+  - [ ] 7.3 Implementar interfaz de gestión de flujos
     - Desarrollar comandos para crear y editar flujos
     - Implementar visualización de estado de flujos
     - Crear sistema de activación/desactivación de flujos
     - _Requirements: 7.1, 7.2, 7.3, 7.4_
 
-- [ ] 10. Implementación del Sistema de Despliegue
+- [ ] 8. Implementación del Sistema de Despliegue
 
-  - [ ] 10.1 Configurar despliegue local
+  - [ ] 8.1 Configurar despliegue local
 
     - Desarrollar scripts de instalación
     - Implementar servicio systemd o equivalente
     - Crear documentación de instalación local
     - _Requirements: 2.2, 2.3_
 
-  - [ ] 10.2 Configurar despliegue en servicios gratuitos
+  - [ ] 8.2 Configurar despliegue en servicios gratuitos
 
     - Implementar configuración para Render
     - Desarrollar configuración para Railway
@@ -207,51 +163,51 @@
     - Implementar sistema de keep-alive
     - _Requirements: 2.2, 2.3, 2.4_
 
-  - [ ] 10.3 Implementar modo híbrido
+  - [ ] 8.3 Implementar modo híbrido
     - Desarrollar sistema de comunicación entre componentes
     - Implementar balanceo de carga entre local y nube
     - Crear sistema de fallback
     - _Requirements: 2.1, 2.2, 2.4_
 
-- [ ] 11. Pruebas y Optimización
+- [ ] 9. Pruebas y Optimización
 
-  - [ ] 11.1 Implementar pruebas unitarias
+  - [ ] 9.1 Implementar pruebas unitarias
 
     - Desarrollar suite de pruebas para cada servicio
     - Implementar mocks para APIs externas
     - Crear pipeline de CI/CD básico
     - _Requirements: 2.1_
 
-  - [ ] 11.2 Implementar pruebas de integración
+  - [ ] 9.2 Implementar pruebas de integración
 
     - Desarrollar pruebas end-to-end para flujos principales
     - Implementar pruebas de límites de APIs gratuitas
     - Crear pruebas de recuperación ante fallos
     - _Requirements: 2.1, 2.4_
 
-  - [ ] 11.3 Optimizar uso de recursos
+  - [ ] 9.3 Optimizar uso de recursos
     - Implementar sistema de caché para reducir llamadas API
     - Desarrollar estrategias de throttling
     - Crear sistema de monitoreo de uso de recursos
     - _Requirements: 2.1, 2.4_
 
-- [ ] 12. Documentación y Finalización
+- [ ] 10. Documentación y Finalización
 
-  - [ ] 12.1 Crear documentación de usuario
+  - [ ] 10.1 Crear documentación de usuario
 
     - Desarrollar guía de inicio rápido
     - Implementar documentación de comandos
     - Crear tutoriales para casos de uso comunes
     - _Requirements: 2.3_
 
-  - [ ] 12.2 Crear documentación técnica
+  - [ ] 10.2 Crear documentación técnica
 
     - Desarrollar documentación de arquitectura
     - Implementar documentación de API
     - Crear guías de contribución
     - _Requirements: 2.3_
 
-  - [ ] 12.3 Implementar sistema de actualizaciones
+  - [ ] 10.3 Implementar sistema de actualizaciones
     - Desarrollar mecanismo de verificación de versiones
     - Implementar proceso de actualización automática
     - Crear sistema de migración de datos
