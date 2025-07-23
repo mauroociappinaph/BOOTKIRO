@@ -41,6 +41,15 @@ Un sistema de automatización personal gratuito que centraliza tareas de product
    pip install -r requirements.txt
    ```
 
+   Las dependencias están organizadas en los siguientes grupos:
+
+   - Bot y API: python-telegram-bot, requests, python-dotenv, cryptography
+   - Google API: google-api-python-client y relacionados
+   - Vector database: faiss-cpu, chromadb, sentence-transformers
+   - Document processing: pypdf, python-docx, beautifulsoup4, pdfminer.six
+   - Content generation: openai, transformers, torch
+   - RAG y LLM: langchain, llama-index
+
 4. Configurar variables de entorno:
 
    ```
