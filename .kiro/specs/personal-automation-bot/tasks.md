@@ -111,7 +111,7 @@
     - Crear funciones de búsqueda semántica
     - _Requirements: 6.1, 6.2, 6.3_
 
-  - [ ] 6.2 Implementar indexación de documentos
+  - [x] 6.2 Implementar indexación de documentos
 
     - Desarrollar procesadores para diferentes formatos (PDF, DOCX, etc.)
     - Implementar sistema de extracción de texto

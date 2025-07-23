@@ -12,3 +12,10 @@ pytest>=7.0.0
 python-dotenv>=0.20.0
 cryptography>=3.4.0
 sentence-transformers>=2.2.0
+# Document processing dependencies
+pypdf>=3.0.0
+python-docx>=0.8.11
+beautifulsoup4>=4.10.0
+pdfminer.six>=20200517
+# Additional dependencies
+numpy>=1.20.0
