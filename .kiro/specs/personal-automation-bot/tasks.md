@@ -102,9 +102,9 @@
     - Crear sistema de sincronización
     - _Requirements: 4.1, 4.2, 4.3_
 
-- [-] 6. Implementación del Sistema RAG
+- [x] 6. Implementación del Sistema RAG
 
-  - [ ] 6.1 Configurar base de datos vectorial local
+  - [x] 6.1 Configurar base de datos vectorial local
 
     - Implementar FAISS o Chroma para almacenamiento de vectores
     - Desarrollar sistema de persistencia de índices
