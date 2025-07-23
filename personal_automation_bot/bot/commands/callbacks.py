@@ -57,7 +57,9 @@ async def handle_callback_query(update: Update, context: ContextTypes.DEFAULT_TY
         await show_coming_soon(query, "📱 Redes Sociales")
 
     elif query.data == "menu_rag":
-        await show_coming_soon(query, "🤖 RAG")
+        # Use the RAG command handler
+        from personal_automation_bot.bot.commands.rag import rag_command
+        await rag_command(update, context)
 
     elif query.data == "menu_flows":
         await show_coming_soon(query, "⚙️ Flujos")
